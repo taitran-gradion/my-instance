@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "name": "acme-greeting",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "risk_tiers": [
     {
       "id": "tool/acme_greeting_add_note",
@@ -58,8 +58,14 @@
       "scope": "workspace"
     }
   ],
-  "decorates": [
-    "deals"
+  "write_hooks": [
+    "deal.create"
+  ],
+  "operation_hooks": [
+    "createDeal"
+  ],
+  "overlays": [
+    "internal/modules/deals.(*Store).CreateDeal"
   ],
   "provides": [
     "deal_scorer"

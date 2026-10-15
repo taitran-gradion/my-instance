@@ -1,0 +1,3 @@
+# The core function each overlay was written against. A core change to it
+# stops the build until the overlay is re-read and this hash is updated.
+internal/modules/deals.(*Store).CreateDeal sha256:860cff4f7f9086599584a8d38f8796a11c3e4cd51097ded9efaa5896457b6ec2

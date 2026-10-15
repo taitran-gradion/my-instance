@@ -6,14 +6,15 @@
 //
 // It shows each way an extension changes Margince:
 //
-//	deals.go      decorates core's deal service: refuses a placeholder name and
-//	              files a welcome note, in the deal's own transaction
+//	hooks.go      an operation hook before core's createDeal, and a write hook
+//	              inside the transaction that creates a deal
 //	scorer.go     provides the deal scorer core has no implementation of
 //	notes.go      its own routes, over its own table, with a ledger entry and a
 //	              timeline activity on the deal for each note
 //	hello.go      the smallest route there is
 //	migrations/   its table, beside the code that embeds it
 //	../api/       its routes, merged into core's contract
+//	overlays/     core functions it compiles over (this installation only)
 //	../frontend/  its pages and the deal header it decorates
 package acmegreeting
 
@@ -30,8 +31,8 @@ var migrations embed.FS
 func New() extension.Extension {
 	return extension.Extension{
 		Name:        "acme-greeting",
-		Version:     "0.2.0",
-		Description: "This installation's own extension: account notes on deals, a deal score, and a decorated deal create.",
+		Version:     "0.3.0",
+		Description: "This installation's own extension: account notes on deals, a deal score, and Acme's rules on new deals.",
 		Tools: []extension.Tool{
 			{Name: "acme_greeting_hello", Handle: hello},
 			{Name: "acme_greeting_list_notes", Handle: listNotes},
@@ -41,8 +42,13 @@ func New() extension.Extension {
 		Secrets: []extension.SecretsRequest{
 			{Key: "greeting_token", Scope: extension.SecretScopeWorkspace},
 		},
-		DecorateDeals: decorateDeals,
-		ScoreDeals:    scoreDeal,
-		Migrations:    migrations,
+		OperationHooks: []extension.OperationHook{
+			{Operations: []string{"createDeal"}, Handle: shapeNewDeal},
+		},
+		WriteHooks: []extension.WriteHook{
+			{Entity: "deal", Actions: []string{"create"}, Handle: welcomeNewDeal},
+		},
+		ScoreDeals: scoreDeal,
+		Migrations: migrations,
 	}
 }

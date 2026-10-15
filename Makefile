@@ -28,6 +28,10 @@ OWNER_DSN := postgres://margince_owner:dev@localhost:15432/$(DB)
 APP_DSN   := postgres://margince_app:margince_app_dev@localhost:15432/$(DB)
 PG        := docker exec -i margince-postgres-1 psql -q -U margince_owner
 RUN       := .run
+# What extensions compile over core (backend/overlays/), written by compose for
+# `go build -overlay`. Go refuses to overlay files in the module cache, so with
+# overlays the binaries are built from the core clone, at the same version.
+OVERLAY   := $(abspath $(CORE))/build/overlay/overlay.json
 REVISION  := instance-$(CORE_VERSION)
 
 export GOWORK   := off
@@ -66,10 +70,18 @@ compose: core ## Generate this instance's composition from extensions.mod
 	@$(MAKE) -s -C $(CORE) composition EXTENSIONS_MOD=$(abspath extensions.mod) GOWORK= GOFLAGS=
 	@echo "composed: $$(grep -o 'mustBe("[^"]*"' $(CORE)/build/composition/backend/extensions_gen.go | cut -d'"' -f2 | paste -sd ' ' -)"
 
-build: ## Build core's role binaries from the required module
-	@for role in api worker migrate; do \
-	  go build -ldflags "-X github.com/margince/margince/backend/internal/shared/buildinfo.Revision=$(REVISION)" \
-	    -o bin/$$role github.com/margince/margince/backend/cmd/$$role || exit 1; done
+build: ## Build core's role binaries from the required module (from the core clone when extensions overlay it)
+	@if [ -f $(OVERLAY) ]; then \
+	  echo "extensions overlay core: building from $(CORE)"; \
+	  for role in api worker migrate; do \
+	    (cd $(CORE)/backend && GOWORK=$(abspath $(CORE))/build/composition/go.work GOFLAGS= go build -overlay $(OVERLAY) \
+	      -ldflags "-X github.com/margince/margince/backend/internal/shared/buildinfo.Revision=$(REVISION)" \
+	      -o $(abspath bin)/$$role ./cmd/$$role) || exit 1; done; \
+	else \
+	  for role in api worker migrate; do \
+	    go build -ldflags "-X github.com/margince/margince/backend/internal/shared/buildinfo.Revision=$(REVISION)" \
+	      -o bin/$$role github.com/margince/margince/backend/cmd/$$role || exit 1; done; \
+	fi
 	@go version -m bin/api | grep -E 'composition|my-extension' | sed 's/^/  /'
 
 db: ## Create this instance's database once
