@@ -1,0 +1,8 @@
+{
+  "extAcmeGreeting.title": "Acme-Begrüßung",
+  "extAcmeGreeting.local.title": "Die eigene Erweiterung dieser Installation",
+  "extAcmeGreeting.local.body": "Ihr Code liegt im Repository dieser Instanz unter addons/greeting und wird nie veröffentlicht.",
+  "extAcmeGreeting.route.title": "Was ihre Route sagt",
+  "extAcmeGreeting.route.asking": "Frage…",
+  "extAcmeGreeting.route.failed": "Keine Antwort"
+}

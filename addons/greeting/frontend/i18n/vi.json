@@ -1,0 +1,8 @@
+{
+  "extAcmeGreeting.title": "Lời chào Acme",
+  "extAcmeGreeting.local.title": "Tiện ích riêng của bản cài đặt này",
+  "extAcmeGreeting.local.body": "Mã của nó nằm trong repository của instance này, tại addons/greeting, và không bao giờ được publish.",
+  "extAcmeGreeting.route.title": "Route của nó trả lời",
+  "extAcmeGreeting.route.asking": "Đang hỏi…",
+  "extAcmeGreeting.route.failed": "Không phản hồi"
+}

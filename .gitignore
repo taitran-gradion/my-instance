@@ -4,3 +4,4 @@ build/
 .margince/
 config/margince-admin-password
 .up.log
+node_modules/

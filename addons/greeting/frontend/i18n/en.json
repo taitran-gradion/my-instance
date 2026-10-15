@@ -1,0 +1,8 @@
+{
+  "extAcmeGreeting.title": "Acme greeting",
+  "extAcmeGreeting.local.title": "This installation's own extension",
+  "extAcmeGreeting.local.body": "Its code lives in this instance's repository, under addons/greeting, and is never published.",
+  "extAcmeGreeting.route.title": "What its route says",
+  "extAcmeGreeting.route.asking": "Asking…",
+  "extAcmeGreeting.route.failed": "No answer"
+}

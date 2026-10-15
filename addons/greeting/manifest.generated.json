@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "name": "acme-greeting",
+  "version": "0.1.0",
+  "risk_tiers": [
+    {
+      "id": "tool/acme_greeting_hello",
+      "unit": "acme-greeting",
+      "kind": "agent_tool",
+      "contract": "crm.yaml",
+      "operation": "agent.tool.invoke",
+      "operation_id": "acmeGreetingHello",
+      "route": "/ext/acme-greeting/hello",
+      "method": "GET",
+      "scopes": [
+        "read"
+      ],
+      "tier": "auto_execute",
+      "fragment_hash": "sha256:e9d728afa650859c80419d596a55ca25175a4710af77bbb51fca8f29d2106b3c",
+      "digest": "sha256:14aaef24e298e47284a085ec952f68f1878e09aa990c793561e62c32dc6ffdf2"
+    }
+  ],
+  "secrets": [
+    {
+      "key": "greeting_token",
+      "scope": "workspace"
+    }
+  ]
+}

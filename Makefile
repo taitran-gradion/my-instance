@@ -63,12 +63,8 @@ up: install compose build db migrate run web ## Everything, in order
 	@echo "  login admin@demo.test / $$(cat config/margince-admin-password)"; echo "  stop  make stop"
 
 compose: core ## Generate this instance's composition from extensions.mod
-	@cp extensions.mod $(CORE)/extensions.mod
-	@[ ! -f extensions.sum ] || cp extensions.sum $(CORE)/extensions.sum
-	@$(MAKE) -s -C $(CORE) composition GOWORK= GOFLAGS=
-	@cp $(CORE)/extensions.sum extensions.sum
-	@rm -rf build/composition && mkdir -p build/composition && cp -R $(CORE)/build/composition/backend build/composition/backend
-	@echo "composed: $$(grep -c 'mustBe("' build/composition/backend/extensions_gen.go) extensions"
+	@$(MAKE) -s -C $(CORE) composition EXTENSIONS_MOD=$(abspath extensions.mod) GOWORK= GOFLAGS=
+	@echo "composed: $$(grep -o 'mustBe("[^"]*"' $(CORE)/build/composition/backend/extensions_gen.go | cut -d'"' -f2 | paste -sd ' ' -)"
 
 build: ## Build core's role binaries from the required module
 	@for role in api worker migrate; do \
@@ -110,5 +106,5 @@ logs: ## Tail the api and worker logs
 	@tail -n 40 $(RUN)/api.log $(RUN)/worker.log
 
 clean: stop ## Remove build output and binaries (keeps the database)
-	rm -rf bin build $(RUN)
+	rm -rf bin $(RUN)
 	rm -rf .margince
