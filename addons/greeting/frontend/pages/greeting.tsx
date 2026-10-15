@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 // #/ext/acme-greeting: this installation's own screen, read from the instance
 // repository rather than from a published module.
-export default function AcmeGreetingScreen() {
+export function AcmeGreetingPage() {
   const t = useT();
   const greeting = useQuery({
     queryKey: ["ext", "acme-greeting", "hello"],

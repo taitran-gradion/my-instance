@@ -86,6 +86,8 @@ github.com/taitran-gradion/margince/backend v0.0.7-poc.3 h1:HDa9BIClu69yjHVcldWu
 github.com/taitran-gradion/margince/backend v0.0.7-poc.3/go.mod h1:fBdovwClvdlwIbSKAIPCdZpl/p1b97PSKuWyrjczFdU=
 github.com/taitran-gradion/margince/backend v0.0.7-poc.4 h1:r44tYT6wAQAFESAh2ntVQNp3iot+KmY2arl5tOw639Y=
 github.com/taitran-gradion/margince/backend v0.0.7-poc.4/go.mod h1:fBdovwClvdlwIbSKAIPCdZpl/p1b97PSKuWyrjczFdU=
+github.com/taitran-gradion/margince/backend v0.0.7-poc.6 h1:cur3SvrJec+L/jc9v26ZfhZbqMU8AQFcQP/9s6b4L6k=
+github.com/taitran-gradion/margince/backend v0.0.7-poc.6/go.mod h1:fBdovwClvdlwIbSKAIPCdZpl/p1b97PSKuWyrjczFdU=
 github.com/taitran-gradion/margince/extensions/de v0.0.0-20261015041556-ac2165237804 h1:gwxmzGE1+mg0mzzBEINx/h2EknkXSwg0L+9Z4UQQOM4=
 github.com/taitran-gradion/margince/extensions/de v0.0.0-20261015041556-ac2165237804/go.mod h1:60o4tbJ2NDoH5aI1ojgnBgnIONcE6Pcy12gwrJmc9fM=
 github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.1 h1:htXNjg0vRIos0uUd2TAzt+c5Oh5DuWqml0JLLucDJqw=
@@ -96,6 +98,8 @@ github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.3 h1:OfHv1vELEkk5/E
 github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.3/go.mod h1:60o4tbJ2NDoH5aI1ojgnBgnIONcE6Pcy12gwrJmc9fM=
 github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.4 h1:1z77GBptdjjcSU/nGLM5rc+tDJrf99ASZwq0cRD/s8g=
 github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.4/go.mod h1:60o4tbJ2NDoH5aI1ojgnBgnIONcE6Pcy12gwrJmc9fM=
+github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.6 h1:9VQl9xOH9y7a03ufTcfIqBNujVZS+1FIrIC/oFhnHDI=
+github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.6/go.mod h1:60o4tbJ2NDoH5aI1ojgnBgnIONcE6Pcy12gwrJmc9fM=
 github.com/taitran-gradion/margince/extensions/openchannel v0.0.0-20261015041556-ac2165237804 h1:tl47QqnAHbTwPMMBMvICAbrMhOePyldB7zsWRABAGwk=
 github.com/taitran-gradion/margince/extensions/openchannel v0.0.0-20261015041556-ac2165237804/go.mod h1:Z/Jr1U5MIBBZV5YnoPN2TM1fKjPDMxwmEf7VXdF1joE=
 github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.1 h1:YMSLy7ecQwrUaugiml+2a2YZe3gZSDiX/0fd5I3vS78=
@@ -106,6 +110,8 @@ github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.3 h1:E524K
 github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.3/go.mod h1:Z/Jr1U5MIBBZV5YnoPN2TM1fKjPDMxwmEf7VXdF1joE=
 github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.4 h1:OOTy+2l+1u4oNdYUu717VX4IyzSdtTpDH6hhmd45R/k=
 github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.4/go.mod h1:Z/Jr1U5MIBBZV5YnoPN2TM1fKjPDMxwmEf7VXdF1joE=
+github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.6 h1:qQlxxQzM1EqheI76NzWs8ivC3VDZeTsukVkMoVJ6IaM=
+github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.6/go.mod h1:Z/Jr1U5MIBBZV5YnoPN2TM1fKjPDMxwmEf7VXdF1joE=
 github.com/taitran-gradion/margince/extensions/vn v0.0.0-20261015041556-ac2165237804 h1:4yhxaFd0A9NFl6sQEp7wVSE9Mc8Bf586Bm2YHMhICHM=
 github.com/taitran-gradion/margince/extensions/vn v0.0.0-20261015041556-ac2165237804/go.mod h1:4iOEILp6RzzEC5q0TpRQtz16grfFD0Ag/ULckRKzW64=
 github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.1 h1:wMKH1jV6cQA3zpf26FTk+x4QQmzkiz9/nRFYem/Jq+c=
@@ -116,6 +122,8 @@ github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.3 h1:+lEGvprCVuTxdT
 github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.3/go.mod h1:4iOEILp6RzzEC5q0TpRQtz16grfFD0Ag/ULckRKzW64=
 github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.4 h1:/fD3XSM6wIvC9kHUuppcgD6MS7fqkVHaiv8On37dIMs=
 github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.4/go.mod h1:4iOEILp6RzzEC5q0TpRQtz16grfFD0Ag/ULckRKzW64=
+github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.6 h1:TSKW4W+sI1f5vJKD+qdzo4vDVX0ZHUY0kozc4rWYI8w=
+github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.6/go.mod h1:4iOEILp6RzzEC5q0TpRQtz16grfFD0Ag/ULckRKzW64=
 github.com/taitran-gradion/my-extension v0.0.0-20261015042026-5239baace1de h1:8vpEHb8ZVHzz28hAKjMLOfF7wG0htL2a3Rt1LEwELI4=
 github.com/taitran-gradion/my-extension v0.0.0-20261015042026-5239baace1de/go.mod h1:RjE/GhSxXwb5XYH5B6BI9S0PTspYZHnqtMx6Y0NqOwk=
 github.com/tetratelabs/wazero v1.12.0 h1:DuWcpNu/FzgEXgGBDp8J1Spc+CWOvvtvVyjKlaZopYU=

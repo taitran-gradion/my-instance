@@ -2,7 +2,7 @@
   "name": "@margince-ext/acme-greeting",
   "private": true,
   "type": "module",
-  "main": "screen.tsx",
+  "main": "index.tsx",
   "peerDependencies": {
     "@margince/frontend": "workspace:*",
     "@tanstack/react-query": "^5.101.4",

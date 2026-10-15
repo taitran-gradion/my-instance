@@ -35,3 +35,98 @@ actions:
                     message: { type: string }
           '401': { $ref: '#/components/responses/Unauthorized' }
           '403': { $ref: '#/components/responses/Forbidden' }
+  - target: $.paths['/ext/acme-greeting/notes']
+    update:
+      get:
+        operationId: acmeGreetingListNotes
+        summary: List Acme's notes on one deal, or the most recent across deals.
+        tags: [Extensions]
+        x-rbac-object: ext_acme_greeting_note
+        x-rbac-action: read
+        parameters:
+          - name: deal_id
+            in: query
+            required: false
+            schema: { type: string, format: uuid }
+        x-mcp-tool:
+          verb: acme_greeting_list_notes
+          version: 1.0.0
+          title: List Acme notes
+          tier: auto_execute
+          scope: read
+          description: >-
+            List the notes Acme's account team keeps on a deal, newest first, or
+            the most recent notes across deals when no deal is named. It changes
+            nothing.
+        responses:
+          '200':
+            description: The notes, newest first.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  additionalProperties: false
+                  required: [notes]
+                  properties:
+                    notes:
+                      type: array
+                      items:
+                        type: object
+                        additionalProperties: false
+                        required: [id, deal_id, body, kind, author_id, created_at]
+                        properties:
+                          id: { type: string, format: uuid }
+                          deal_id: { type: string, format: uuid }
+                          body: { type: string }
+                          kind: { type: string, enum: [member, welcome] }
+                          author_id: { type: [string, 'null'], format: uuid }
+                          created_at: { type: string, format: date-time }
+          '401': { $ref: '#/components/responses/Unauthorized' }
+          '403': { $ref: '#/components/responses/Forbidden' }
+      post:
+        operationId: acmeGreetingAddNote
+        summary: Add an Acme note to a deal; it also lands on the deal's timeline.
+        tags: [Extensions]
+        x-rbac-object: ext_acme_greeting_note
+        x-rbac-action: create
+        x-mcp-tool:
+          verb: acme_greeting_add_note
+          version: 1.0.0
+          title: Add an Acme note
+          tier: auto_execute
+          scope: write
+          description: >-
+            Add a note for Acme's account team to a deal. The note is also logged
+            on the deal's timeline as a note activity, so it needs a deal the
+            caller may see.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [deal_id, body]
+                properties:
+                  deal_id: { type: string, format: uuid }
+                  body: { type: string, minLength: 1, maxLength: 2000 }
+        responses:
+          '200':
+            description: The note as stored.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  additionalProperties: false
+                  required: [id, deal_id, body, kind, author_id, created_at]
+                  properties:
+                    id: { type: string, format: uuid }
+                    deal_id: { type: string, format: uuid }
+                    body: { type: string }
+                    kind: { type: string, enum: [member, welcome] }
+                    author_id: { type: [string, 'null'], format: uuid }
+                    created_at: { type: string, format: date-time }
+          '401': { $ref: '#/components/responses/Unauthorized' }
+          '403': { $ref: '#/components/responses/Forbidden' }
+          '404': { $ref: '#/components/responses/NotFound' }
+          '422': { $ref: '#/components/responses/ValidationError' }
