@@ -60,6 +60,7 @@ addons/greeting/
   api/crm.yaml                its routes, merged into core's contract
   frontend/
     index.tsx                 the package entry: its page, and `screens` it adds to core
+    theme.css                 Acme's brand color over core's
     api.ts                    every call its screens make
     pages/                    #/ext/acme-greeting and #/x/acme-desk
     components/               the account modal
@@ -74,6 +75,12 @@ addons/greeting/
 | 3. Operation hook | `backend/hooks.go` (`shapeNewDeal`) | A deal named "TBD" is refused with Acme's reason; a deal of 50,000.00 or more gets priority High |
 | 4. Overlay | `backend/overlays/internal/modules/deals/` | A deal created with no close date gets one 30 days out, marked provisional. The contract has no field for that, so only core's own create can set it |
 | Frontend override | `frontend/overrides/` | The "Acme account" badge on the deal header, opening the score and notes; on a contact's header, "Acme profile" (how much of email, phone, title and employer is known) and "Follow-ups" |
+
+**Brand color.** `frontend/theme.css` redefines core's accent variables (`--accent`, `--accentText`,
+`--accentLight`, `--accentMed`, `--glowA`) for light, dark and "dark when the system asks", with
+selectors one step more specific than core's `design-system/tokens.css`. The extension's `index.tsx`
+imports it, and core imports every extension's entry when the app starts, so the whole app is Acme
+indigo instead of Margince emerald. Removing the import brings core's color back.
 
 The contact page is customized with no change to core: an operation hook on `createContact` and
 `updateContact` saves names title-cased, a write hook on `contact.create` files an "Introduce Acme" task

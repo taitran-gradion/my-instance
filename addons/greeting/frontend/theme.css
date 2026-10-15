@@ -1,0 +1,33 @@
+/* Acme's brand color over Margince's. Core defines its accent as variables in
+ * design-system/tokens.css (light, dark, and dark when the system asks); every
+ * component reads them, so redefining them here re-themes the whole app.
+ *
+ * Each selector is one step more specific than core's, so these win whatever
+ * order the bundle loads the two files in. Text on the accent and the accent
+ * as text both stay at or above 4.5:1 in each theme. */
+
+:root:root {
+  --accent: #4338ca;
+  --accentText: #3730a3;
+  --accentLight: rgba(67, 56, 202, 0.09);
+  --accentMed: rgba(67, 56, 202, 0.17);
+  --glowA: rgba(99, 102, 241, 0.08);
+}
+
+:root[data-theme="dark"] {
+  --accent: #4f46e5;
+  --accentText: #a5b4fc;
+  --accentLight: rgba(99, 102, 241, 0.16);
+  --accentMed: rgba(99, 102, 241, 0.3);
+  --glowA: rgba(99, 102, 241, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:root:not([data-theme="light"]) {
+    --accent: #4f46e5;
+    --accentText: #a5b4fc;
+    --accentLight: rgba(99, 102, 241, 0.16);
+    --accentMed: rgba(99, 102, 241, 0.3);
+    --glowA: rgba(99, 102, 241, 0.12);
+  }
+}

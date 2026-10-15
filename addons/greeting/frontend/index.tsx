@@ -2,6 +2,9 @@ import type { CustomScreen } from "@margince/frontend/app";
 import { Sparkles } from "lucide-react";
 import { AcmeDeskPage } from "./pages/desk";
 import { AcmeGreetingPage } from "./pages/greeting";
+// Acme's brand color over core's; loaded with the app, since core imports
+// every extension's entry at start.
+import "./theme.css";
 
 // Everything this extension's frontend gives core is named here.
 
