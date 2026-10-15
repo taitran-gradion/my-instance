@@ -1,0 +1,4 @@
+bin/
+build/
+.run/
+config/margince-admin-password
