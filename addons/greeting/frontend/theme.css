@@ -7,11 +7,25 @@
  * as text both stay at or above 4.5:1 in each theme. */
 
 :root:root {
-  --accent: #4338ca;
-  --accentText: #3730a3;
-  --accentLight: rgba(67, 56, 202, 0.09);
-  --accentMed: rgba(67, 56, 202, 0.17);
-  --glowA: rgba(99, 102, 241, 0.08);
+  --accent: #dc2626;
+  --accentText: #b91c1c;
+  --accentLight: rgba(220, 38, 38, 0.12);
+  --accentMed: rgba(220, 38, 38, 0.24);
+  --glowA: rgba(239, 68, 68, 0.35);
+  --glowB: rgba(249, 115, 22, 0.35);
+  --bgPage: #ffe4e6;
+  --bgElevated: #fff1f2;
+  --bgInset: #fecdd3;
+  --bgHover: #ffe4e6;
+  --bgWell: #fff5f5;
+  --textPrimary: #7f1d1d;
+  --textSecondary: #9f1239;
+}
+
+/* The sign-in page's moving waves are drawn by a WebGL shader with colors of
+ * their own, so they are tinted rather than recolored: every hue pushed to red. */
+:root:not([data-theme="dark"]) .ambient-waves {
+  filter: brightness(0.92) sepia(1) saturate(8) hue-rotate(-75deg);
 }
 
 :root[data-theme="dark"] {
