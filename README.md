@@ -40,16 +40,16 @@ a Go change needs `make up` again. No folder name is fixed: the `replace` says w
 and the extension's name comes from its module path (`acme-greeting`), not from its folder.
 `go.mod` carries the same `require` and `replace`, because Go builds the binaries from it.
 
-## Changing core screens without a slot
+## Adding a page and changing a core screen
 
-`acme-greeting` also changes two things core never declared a slot for, through its
-`frontend/overrides/` tree, which mirrors core's `frontend/`:
+`acme-greeting` adds a page of its own and changes one core screen that has no slot:
 
 | File | What it does |
 |---|---|
-| `overrides/src/screens/deal360/dealheaderfacts.tsx` | Replaces core's file of that path. It wraps core's `DealSubtitle`, reached as `@core-original/…`, with an "Acme account" badge that opens a modal |
-| `overrides/src/screens/custom/acme-greeting/screen.tsx` | Adds a screen core does not have. Its `nav.group: "records"` puts "Acme desk" in the sidebar after Deals |
-| `overrides.lock` | The hash of each core file it replaces. When core changes that file, `make compose` stops and prints the new line |
+| `frontend/screens.tsx` | Exports `screens: CustomScreen[]`. Core gives each one `#/x/<key>`, and `nav.group: "records"` puts "Acme desk" in the sidebar after Deals. The page itself is `frontend/desk.tsx` |
+| `frontend/overrides/src/screens/deal360/dealheaderfacts.tsx` | Replaces core's file of that path. It wraps core's `DealSubtitle`, reached as `@core-original/…`, with an "Acme account" badge that opens a modal |
+| `frontend/overrides.lock` | The hash of each core file it replaces. When core changes that file, `make compose` stops and prints the new line |
 
-After moving `go.mod` to a newer core, a failed lock means: read core's new file, update the
-override, then paste the printed line into `overrides.lock`.
+`overrides/` only replaces files core has. A new page is an ordinary file of the extension, listed in
+`screens.tsx`. After moving `go.mod` to a newer core, a failed lock means: read core's new file, update
+the override, then paste the printed line into `overrides.lock`.

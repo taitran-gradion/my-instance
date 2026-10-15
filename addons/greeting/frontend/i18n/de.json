@@ -14,10 +14,10 @@
   "extAcmeGreeting.modal.note": "Notiz für das Acme-Team",
   "extAcmeGreeting.modal.ask": "Acme fragen",
   "extAcmeGreeting.modal.close": "Schließen",
-  "extAcmeGreeting.desk.how.title": "Eine Seite, die der Kern nicht hat",
-  "extAcmeGreeting.desk.how.body": "Das Addon acme-greeting legt diese Datei im Ordner für eigene Seiten des Kerns ab, daher erscheint sie in der Seitenleiste unter Datensätze.",
+  "extAcmeGreeting.desk.how.title": "Eine eigene Seite dieser Installation",
+  "extAcmeGreeting.desk.how.body": "Das Addon acme-greeting exportiert diese Seite aus seinem eigenen Paket, und der Kern zeigt sie in der Seitenleiste unter Datensätze.",
   "extAcmeGreeting.desk.deals": "Deals",
   "extAcmeGreeting.desk.empty": "Noch keine Deals",
   "extAcmeGreeting.desk.col.name": "Deal",
-  "extAcmeGreeting.desk.col.company": "Firma"
+  "extAcmeGreeting.desk.col.status": "Status"
 }
