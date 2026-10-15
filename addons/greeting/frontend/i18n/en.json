@@ -21,5 +21,16 @@
   "extAcmeGreeting.desk.col.note": "Note",
   "extAcmeGreeting.desk.col.kind": "From",
   "extAcmeGreeting.modal.notesFailed": "The notes could not be read",
-  "extAcmeGreeting.modal.needsGrant": "Your role does not hold ext_acme_greeting_note. An admin grants it in Settings, Roles: open the role and turn on read and create for ext_acme_greeting_note."
+  "extAcmeGreeting.modal.needsGrant": "Your role does not hold ext_acme_greeting_note. An admin grants it in Settings, Roles: open the role and turn on read and create for ext_acme_greeting_note.",
+  "extAcmeGreeting.contact.profile": "Acme profile",
+  "extAcmeGreeting.contact.complete": "{have} of {of} known",
+  "extAcmeGreeting.contact.followups": "Acme",
+  "extAcmeGreeting.contact.open": "Follow-ups",
+  "extAcmeGreeting.followup.title": "Acme follow-ups",
+  "extAcmeGreeting.followup.failed": "Follow-ups are not available",
+  "extAcmeGreeting.followup.automatic": "Automatic",
+  "extAcmeGreeting.followup.note": "What to follow up on",
+  "extAcmeGreeting.followup.when": "When",
+  "extAcmeGreeting.followup.inDays": "In {days} days",
+  "extAcmeGreeting.followup.plan": "Plan follow-up"
 }

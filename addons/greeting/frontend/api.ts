@@ -49,3 +49,29 @@ export function refusedForRole(error: unknown): boolean {
   const problem = error.problem;
   return typeof problem === "object" && problem !== null && "status" in problem && problem.status === 403;
 }
+
+const followupsKey = ["ext", "acme-greeting", "followups"] as const;
+
+export function useAcmeFollowups(contactId: string) {
+  return useQuery({
+    queryKey: [...followupsKey, contactId],
+    queryFn: async () => {
+      const { data, error } = await api.GET("/ext/acme-greeting/followups", { params: { query: { contact_id: contactId } } });
+      if (error) throwProblem(error);
+      return data.followups;
+    },
+  });
+}
+
+export function usePlanAcmeFollowup(contactId: string) {
+  const client = useQueryClient();
+  return useMutation({
+    mutationFn: async (plan: { days: number; note: string }) => {
+      const { data, error } = await api.POST("/ext/acme-greeting/followups", { body: { contact_id: contactId, ...plan } });
+      if (error) throwProblem(error);
+      return data;
+    },
+    // The task also lands on core's timeline, so core's own reads refresh too.
+    onSuccess: () => client.invalidateQueries(),
+  });
+}

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "name": "acme-greeting",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "risk_tiers": [
     {
       "id": "tool/acme_greeting_add_note",
@@ -36,6 +36,22 @@
       "digest": "sha256:14aaef24e298e47284a085ec952f68f1878e09aa990c793561e62c32dc6ffdf2"
     },
     {
+      "id": "tool/acme_greeting_list_followups",
+      "unit": "acme-greeting",
+      "kind": "agent_tool",
+      "contract": "crm.yaml",
+      "operation": "agent.tool.invoke",
+      "operation_id": "acmeGreetingListFollowups",
+      "route": "/ext/acme-greeting/followups",
+      "method": "GET",
+      "scopes": [
+        "read"
+      ],
+      "tier": "auto_execute",
+      "fragment_hash": "sha256:d0b9098d47d6608b13e084b5c24b6687aba87e62353c33af23f247f479d287cd",
+      "digest": "sha256:6d464ed2dec895ee9b8c74188289d054f2441bcfcfce2b76a1f101d51b786c29"
+    },
+    {
       "id": "tool/acme_greeting_list_notes",
       "unit": "acme-greeting",
       "kind": "agent_tool",
@@ -50,6 +66,22 @@
       "tier": "auto_execute",
       "fragment_hash": "sha256:8b5b36b0f19a557dd19f7b1dc59dd256afc8ac93807adeb55e79efb534ceba9b",
       "digest": "sha256:fc9bb0d4735f144623c4d531f7df2aec1bf37cd1d29dffb37f0e5db48680d76d"
+    },
+    {
+      "id": "tool/acme_greeting_plan_followup",
+      "unit": "acme-greeting",
+      "kind": "agent_tool",
+      "contract": "crm.yaml",
+      "operation": "agent.tool.invoke",
+      "operation_id": "acmeGreetingPlanFollowup",
+      "route": "/ext/acme-greeting/followups",
+      "method": "POST",
+      "scopes": [
+        "write"
+      ],
+      "tier": "auto_execute",
+      "fragment_hash": "sha256:6af068eb72ec17c89db9db021576aa5da6aa5af3418858ec31d5c1e5f6d6eda0",
+      "digest": "sha256:f4f139912f31d1ada2c86608c9d234e6daf01c121b33b38d3b71d3c2fee793d8"
     }
   ],
   "secrets": [
@@ -59,10 +91,13 @@
     }
   ],
   "write_hooks": [
+    "contact.create",
     "deal.create"
   ],
   "operation_hooks": [
-    "createDeal"
+    "createContact",
+    "createDeal",
+    "updateContact"
   ],
   "overlays": [
     "internal/modules/deals.(*Store).CreateDeal"

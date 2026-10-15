@@ -51,6 +51,7 @@ addons/greeting/
   backend/                    the one Go package
     acmegreeting.go           New(): everything the extension gives core, declared in one place
     hooks.go                  an operation hook and a write hook on new deals
+    contacts.go               title-cased names, a task on every new contact, follow-ups
     scorer.go                 provides the deal scorer core has no implementation of
     notes.go                  its own routes, over its own table
     hello.go                  the smallest route there is
@@ -72,7 +73,14 @@ addons/greeting/
 | 2. Write hook | `backend/hooks.go` (`welcomeNewDeal`) | Every new deal gets a welcome note, in the deal's own transaction: if the note fails, the deal is not created |
 | 3. Operation hook | `backend/hooks.go` (`shapeNewDeal`) | A deal named "TBD" is refused with Acme's reason; a deal of 50,000.00 or more gets priority High |
 | 4. Overlay | `backend/overlays/internal/modules/deals/` | A deal created with no close date gets one 30 days out, marked provisional. The contract has no field for that, so only core's own create can set it |
-| Frontend override | `frontend/overrides/` | The "Acme account" badge on the deal header, opening the score and notes |
+| Frontend override | `frontend/overrides/` | The "Acme account" badge on the deal header, opening the score and notes; on a contact's header, "Acme profile" (how much of email, phone, title and employer is known) and "Follow-ups" |
+
+The contact page is customized with no change to core: an operation hook on `createContact` and
+`updateContact` saves names title-cased, a write hook on `contact.create` files an "Introduce Acme" task
+due in two days, and the follow-ups a member plans from the contact header are core tasks too, so core's
+own "Needs attention" card shows them. The code is `backend/contacts.go`,
+`backend/migrations/0002_contact_followup.*`, `frontend/overrides/src/screens/contactfacts.tsx` and
+`frontend/components/followup-modal.tsx`.
 
 Each level is listed in `manifest.generated.json` (`write_hooks`, `operation_hooks`, `overlays`,
 `provides`). An overlay compiles code into core's own packages, so only an extension in this

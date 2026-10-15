@@ -8,6 +8,8 @@
 //
 //	hooks.go      an operation hook before core's createDeal, and a write hook
 //	              inside the transaction that creates a deal
+//	contacts.go   title-cased contact names, an "Introduce Acme" task on every
+//	              new contact, and follow-ups planned from the contact page
 //	scorer.go     provides the deal scorer core has no implementation of
 //	notes.go      its own routes, over its own table, with a ledger entry and a
 //	              timeline activity on the deal for each note
@@ -31,12 +33,14 @@ var migrations embed.FS
 func New() extension.Extension {
 	return extension.Extension{
 		Name:        "acme-greeting",
-		Version:     "0.3.0",
+		Version:     "0.4.0",
 		Description: "This installation's own extension: account notes on deals, a deal score, and Acme's rules on new deals.",
 		Tools: []extension.Tool{
 			{Name: "acme_greeting_hello", Handle: hello},
 			{Name: "acme_greeting_list_notes", Handle: listNotes},
 			{Name: "acme_greeting_add_note", Handle: addNote},
+			{Name: "acme_greeting_list_followups", Handle: listFollowups},
+			{Name: "acme_greeting_plan_followup", Handle: planFollowup},
 		},
 		// Lists the unit under Settings, Integrations.
 		Secrets: []extension.SecretsRequest{
@@ -44,9 +48,11 @@ func New() extension.Extension {
 		},
 		OperationHooks: []extension.OperationHook{
 			{Operations: []string{"createDeal"}, Handle: shapeNewDeal},
+			{Operations: []string{"createContact", "updateContact"}, Handle: titleCaseNames},
 		},
 		WriteHooks: []extension.WriteHook{
 			{Entity: "deal", Actions: []string{"create"}, Handle: welcomeNewDeal},
+			{Entity: "contact", Actions: []string{"create"}, Handle: introduceAcme},
 		},
 		ScoreDeals: scoreDeal,
 		Migrations: migrations,

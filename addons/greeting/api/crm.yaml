@@ -130,3 +130,100 @@ actions:
           '403': { $ref: '#/components/responses/Forbidden' }
           '404': { $ref: '#/components/responses/NotFound' }
           '422': { $ref: '#/components/responses/ValidationError' }
+  - target: $.paths['/ext/acme-greeting/followups']
+    update:
+      get:
+        operationId: acmeGreetingListFollowups
+        summary: List Acme's follow-ups on one contact, soonest first.
+        tags: [Extensions]
+        x-rbac-object: ext_acme_greeting_note
+        x-rbac-action: read
+        parameters:
+          - name: contact_id
+            in: query
+            required: true
+            schema: { type: string, format: uuid }
+        x-mcp-tool:
+          verb: acme_greeting_list_followups
+          version: 1.0.0
+          title: List Acme follow-ups
+          tier: auto_execute
+          scope: read
+          description: >-
+            List the follow-ups Acme planned on a contact, soonest first. Each is
+            also a task on the contact's timeline. It changes nothing.
+        responses:
+          '200':
+            description: The follow-ups, soonest first.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  additionalProperties: false
+                  required: [followups]
+                  properties:
+                    followups:
+                      type: array
+                      items:
+                        type: object
+                        additionalProperties: false
+                        required: [id, contact_id, activity_id, note, kind, due_at, created_at]
+                        properties:
+                          id: { type: string, format: uuid }
+                          contact_id: { type: string, format: uuid }
+                          activity_id: { type: string, format: uuid }
+                          note: { type: string }
+                          kind: { type: string, enum: [member, welcome] }
+                          due_at: { type: string, format: date-time }
+                          created_at: { type: string, format: date-time }
+          '401': { $ref: '#/components/responses/Unauthorized' }
+          '403': { $ref: '#/components/responses/Forbidden' }
+      post:
+        operationId: acmeGreetingPlanFollowup
+        summary: Plan an Acme follow-up on a contact; it lands as a task on the contact's timeline.
+        tags: [Extensions]
+        x-rbac-object: ext_acme_greeting_note
+        x-rbac-action: create
+        x-mcp-tool:
+          verb: acme_greeting_plan_followup
+          version: 1.0.0
+          title: Plan an Acme follow-up
+          tier: auto_execute
+          scope: write
+          description: >-
+            Plan a follow-up on a contact, 1 to 30 days out. It is filed as a task
+            for the caller on the contact's timeline, so it needs a contact the
+            caller may see.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [contact_id, days, note]
+                properties:
+                  contact_id: { type: string, format: uuid }
+                  days: { type: integer, minimum: 1, maximum: 30 }
+                  note: { type: string, minLength: 1, maxLength: 500 }
+        responses:
+          '200':
+            description: The follow-up as planned.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  additionalProperties: false
+                  required: [id, contact_id, activity_id, note, kind, due_at, created_at]
+                  properties:
+                    id: { type: string, format: uuid }
+                    contact_id: { type: string, format: uuid }
+                    activity_id: { type: string, format: uuid }
+                    note: { type: string }
+                    kind: { type: string, enum: [member, welcome] }
+                    due_at: { type: string, format: date-time }
+                    created_at: { type: string, format: date-time }
+          '401': { $ref: '#/components/responses/Unauthorized' }
+          '403': { $ref: '#/components/responses/Forbidden' }
+          '404': { $ref: '#/components/responses/NotFound' }
+          '422': { $ref: '#/components/responses/ValidationError' }

@@ -21,5 +21,16 @@
   "extAcmeGreeting.desk.col.note": "Notiz",
   "extAcmeGreeting.desk.col.kind": "Von",
   "extAcmeGreeting.modal.notesFailed": "Die Notizen konnten nicht gelesen werden",
-  "extAcmeGreeting.modal.needsGrant": "Ihre Rolle hat ext_acme_greeting_note nicht. Ein Admin vergibt es unter Einstellungen, Rollen: die Rolle öffnen und Lesen und Anlegen für ext_acme_greeting_note einschalten."
+  "extAcmeGreeting.modal.needsGrant": "Ihre Rolle hat ext_acme_greeting_note nicht. Ein Admin vergibt es unter Einstellungen, Rollen: die Rolle öffnen und Lesen und Anlegen für ext_acme_greeting_note einschalten.",
+  "extAcmeGreeting.contact.profile": "Acme-Profil",
+  "extAcmeGreeting.contact.complete": "{have} von {of} bekannt",
+  "extAcmeGreeting.contact.followups": "Acme",
+  "extAcmeGreeting.contact.open": "Nachfassen",
+  "extAcmeGreeting.followup.title": "Acme-Nachfassaufgaben",
+  "extAcmeGreeting.followup.failed": "Nachfassaufgaben sind nicht verfügbar",
+  "extAcmeGreeting.followup.automatic": "Automatisch",
+  "extAcmeGreeting.followup.note": "Worum es geht",
+  "extAcmeGreeting.followup.when": "Wann",
+  "extAcmeGreeting.followup.inDays": "In {days} Tagen",
+  "extAcmeGreeting.followup.plan": "Nachfassen planen"
 }

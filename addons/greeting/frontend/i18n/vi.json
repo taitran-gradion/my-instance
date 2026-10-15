@@ -21,5 +21,16 @@
   "extAcmeGreeting.desk.col.note": "Ghi chú",
   "extAcmeGreeting.desk.col.kind": "Nguồn",
   "extAcmeGreeting.modal.notesFailed": "Không đọc được ghi chú",
-  "extAcmeGreeting.modal.needsGrant": "Vai trò của bạn chưa có ext_acme_greeting_note. Admin cấp quyền trong Cài đặt, Vai trò: mở vai trò và bật đọc và tạo cho ext_acme_greeting_note."
+  "extAcmeGreeting.modal.needsGrant": "Vai trò của bạn chưa có ext_acme_greeting_note. Admin cấp quyền trong Cài đặt, Vai trò: mở vai trò và bật đọc và tạo cho ext_acme_greeting_note.",
+  "extAcmeGreeting.contact.profile": "Hồ sơ Acme",
+  "extAcmeGreeting.contact.complete": "Biết {have}/{of}",
+  "extAcmeGreeting.contact.followups": "Acme",
+  "extAcmeGreeting.contact.open": "Theo dõi",
+  "extAcmeGreeting.followup.title": "Việc theo dõi của Acme",
+  "extAcmeGreeting.followup.failed": "Không dùng được việc theo dõi",
+  "extAcmeGreeting.followup.automatic": "Tự động",
+  "extAcmeGreeting.followup.note": "Cần theo dõi việc gì",
+  "extAcmeGreeting.followup.when": "Khi nào",
+  "extAcmeGreeting.followup.inDays": "Sau {days} ngày",
+  "extAcmeGreeting.followup.plan": "Lên lịch theo dõi"
 }
