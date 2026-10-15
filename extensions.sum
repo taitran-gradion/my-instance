@@ -1,4 +1,2 @@
-example.com/margince-ext/my-extension v0.2.1 h1:hdsQo7NA2EjWQIO3OSyJ69jPUdTFyU3svynGSAV4Gmk=
-example.com/margince-ext/my-extension v0.2.1/go.mod h1:AN7rhXGvwQ0//SvNIhqJCBxs9hWnuKfxOMHiWNSRA20=
-example.com/margince-ext/my-extension v0.3.1 h1:gq+QXvB2lzW8fLREqBcgovE6WGxb51v5n2NDYhKK1ow=
-example.com/margince-ext/my-extension v0.3.1/go.mod h1:AN7rhXGvwQ0//SvNIhqJCBxs9hWnuKfxOMHiWNSRA20=
+github.com/taitran-gradion/my-extension v0.0.0-20261015042026-5239baace1de h1:8vpEHb8ZVHzz28hAKjMLOfF7wG0htL2a3Rt1LEwELI4=
+github.com/taitran-gradion/my-extension v0.0.0-20261015042026-5239baace1de/go.mod h1:RjE/GhSxXwb5XYH5B6BI9S0PTspYZHnqtMx6Y0NqOwk=

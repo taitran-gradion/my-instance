@@ -3,24 +3,23 @@ module example.com/acme-margince
 go 1.27.2
 
 require (
-	example.com/margince-ext/my-extension v0.3.1
 	github.com/margince/margince/backend v0.0.0
 	github.com/margince/margince/composition v0.0.0
 	github.com/margince/margince/extensions/de v0.0.0
 	github.com/margince/margince/extensions/openchannel v0.0.0
 	github.com/margince/margince/extensions/vn v0.0.0
+	github.com/taitran-gradion/my-extension v0.0.0-20261015042026-5239baace1de
 )
 
 // The composition this instance generated: core's own replace
 // (backend/go.mod -> ../composition) is ignored outside the main module.
 replace github.com/margince/margince/composition => ./build/composition/backend
 
-// STAND-INS until core publishes versions, all pointing at the core toolkit
-// checkout named in core.path: backend for a backend/vX tag, and the units
-// core bundles for their own module versions.
+// Core from the fork that carries the extensions.mod POC. The Makefile reads
+// the backend version here to fetch the matching core for composing.
 replace (
-	github.com/margince/margince/backend => ../margince-poc-gomod/backend
-	github.com/margince/margince/extensions/de => ../margince-poc-gomod/extensions/de
-	github.com/margince/margince/extensions/openchannel => ../margince-poc-gomod/extensions/openchannel
-	github.com/margince/margince/extensions/vn => ../margince-poc-gomod/extensions/vn
+	github.com/margince/margince/backend => github.com/taitran-gradion/margince/backend v0.0.7-poc.1
+	github.com/margince/margince/extensions/de => github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.1
+	github.com/margince/margince/extensions/openchannel => github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.1
+	github.com/margince/margince/extensions/vn => github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.1
 )

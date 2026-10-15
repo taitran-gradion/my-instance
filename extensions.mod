@@ -2,4 +2,4 @@ module margince.local/installation
 
 go 1.27.2
 
-require example.com/margince-ext/my-extension v0.3.1
+require github.com/taitran-gradion/my-extension v0.0.0-20261015042026-5239baace1de

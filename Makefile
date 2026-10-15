@@ -1,19 +1,24 @@
-# A Margince installation that REQUIRES core instead of cloning it.
+# A Margince installation that requires core's Go modules instead of vendoring core.
 #
 # Go: go.mod requires github.com/margince/margince/backend, and this module
 # builds core's cmd/api, cmd/worker and cmd/migrate itself, linked with the
 # composition it generated (replace composition => ./build/composition/backend).
 #
-# Stand-ins, until core publishes what #7727 proposes:
-#   - the backend version  → a replace to the core checkout in core.path
-#   - `go tool margince`    → make -C $(CORE) composition / vite
-#   - @margince/app (SPA)   → core's frontend/, served by its Vite
+# Core is the fork that carries the extensions.mod POC (margince/margince#7727),
+# at the version go.mod replaces core's modules with. Stand-ins, until core publishes what #7727 proposes:
+#   - `go tool margince`    → a clone of the fork at that tag in .margince/core,
+#                             whose make composition and Vite this file runs
+#   - @margince/app (SPA)   → that clone's frontend/
 #
 # Infrastructure is the local dev Postgres, Redis and object store that
 # `make dev` in core starts; this instance takes its own database, Redis
 # database number, bucket and ports.
 
-CORE      := $(shell cat core.path)
+CORE      := .margince/core
+# The core version is the one go.mod replaces the backend with, so composing and
+# building can never use two different cores.
+CORE_VERSION := $(shell awk '$$1 == "github.com/margince/margince/backend" && $$2 == "=>" {print $$NF}' go.mod)
+CORE_URL  ?= https://github.com/taitran-gradion/margince
 API_PORT  := 18190
 WEB_PORT  := 8190
 DB        := margince_instance
@@ -23,11 +28,8 @@ OWNER_DSN := postgres://margince_owner:dev@localhost:15432/$(DB)
 APP_DSN   := postgres://margince_app:margince_app_dev@localhost:15432/$(DB)
 PG        := docker exec -i margince-postgres-1 psql -q -U margince_owner
 RUN       := .run
-REVISION  := instance-$(shell git -C $(CORE) rev-parse --short HEAD)
+REVISION  := instance-$(CORE_VERSION)
 
-# Units arrive through a Go proxy; the POC's local proxy is the default here.
-export GOPROXY  ?= file://$(abspath $(CORE)/../poc-gomod/proxy),https://proxy.golang.org
-export GONOSUMDB ?= example.com/*
 export GOWORK   := off
 export GOFLAGS  := -mod=mod
 
@@ -40,16 +42,27 @@ export MARGINCE_BLOBSTORE_SECRET_KEY := minioadmin
 export MARGINCE_BLOBSTORE_REGION     := us-east-1
 export MARGINCE_BLOBSTORE_BUCKET     := $(BUCKET)
 
-.PHONY: help up compose build db migrate run web stop logs clean
+.PHONY: help core install up compose build db migrate run web stop logs clean
 
 help: ## List the targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-8s %s\n", $$1, $$2}'
 
-up: compose build db migrate run web ## Everything, in order
+core: ## Fetch core at the version go.mod names (again only when it changes)
+	@test -n "$(CORE_VERSION)" || { echo "go.mod replaces no github.com/margince/margince/backend version"; exit 1; }
+	@if [ "$$(cat $(CORE)/.version 2>/dev/null)" != "$(CORE_VERSION)" ]; then \
+	  rm -rf $(CORE) && git init -q $(CORE) \
+	  && git -C $(CORE) fetch -q --depth 1 $(CORE_URL) refs/tags/backend/$(CORE_VERSION) \
+	  && git -C $(CORE) -c advice.detachedHead=false checkout -q FETCH_HEAD \
+	  && echo $(CORE_VERSION) > $(CORE)/.version; fi
+
+install: core ## Once: core's frontend dependencies, for the web app
+	@$(MAKE) -s -C $(CORE) fe-install GOWORK= GOFLAGS=
+
+up: install compose build db migrate run web ## Everything, in order
 	@echo; echo "  OPEN  http://localhost:$(WEB_PORT)   (api http://localhost:$(API_PORT))"
 	@echo "  login admin@demo.test / $$(cat config/margince-admin-password)"; echo "  stop  make stop"
 
-compose: ## Generate this instance's composition from extensions.mod
+compose: core ## Generate this instance's composition from extensions.mod
 	@cp extensions.mod $(CORE)/extensions.mod
 	@[ ! -f extensions.sum ] || cp extensions.sum $(CORE)/extensions.sum
 	@$(MAKE) -s -C $(CORE) composition GOWORK= GOFLAGS=
@@ -98,4 +111,4 @@ logs: ## Tail the api and worker logs
 
 clean: stop ## Remove build output and binaries (keeps the database)
 	rm -rf bin build $(RUN)
-	rm -f $(CORE)/extensions.mod $(CORE)/extensions.sum
+	rm -rf .margince
