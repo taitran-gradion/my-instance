@@ -19,5 +19,7 @@
   "extAcmeGreeting.modal.add": "Thêm ghi chú",
   "extAcmeGreeting.desk.notes": "Ghi chú Acme mới nhất",
   "extAcmeGreeting.desk.col.note": "Ghi chú",
-  "extAcmeGreeting.desk.col.kind": "Nguồn"
+  "extAcmeGreeting.desk.col.kind": "Nguồn",
+  "extAcmeGreeting.modal.notesFailed": "Không đọc được ghi chú",
+  "extAcmeGreeting.modal.needsGrant": "Vai trò của bạn chưa có ext_acme_greeting_note. Admin cấp quyền trong Cài đặt, Vai trò: mở vai trò và bật đọc và tạo cho ext_acme_greeting_note."
 }

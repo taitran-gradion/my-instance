@@ -19,5 +19,7 @@
   "extAcmeGreeting.modal.add": "Add note",
   "extAcmeGreeting.desk.notes": "Latest Acme notes",
   "extAcmeGreeting.desk.col.note": "Note",
-  "extAcmeGreeting.desk.col.kind": "From"
+  "extAcmeGreeting.desk.col.kind": "From",
+  "extAcmeGreeting.modal.notesFailed": "The notes could not be read",
+  "extAcmeGreeting.modal.needsGrant": "Your role does not hold ext_acme_greeting_note. An admin grants it in Settings, Roles: open the role and turn on read and create for ext_acme_greeting_note."
 }

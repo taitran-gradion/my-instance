@@ -19,5 +19,7 @@
   "extAcmeGreeting.modal.add": "Notiz hinzufügen",
   "extAcmeGreeting.desk.notes": "Neueste Acme-Notizen",
   "extAcmeGreeting.desk.col.note": "Notiz",
-  "extAcmeGreeting.desk.col.kind": "Von"
+  "extAcmeGreeting.desk.col.kind": "Von",
+  "extAcmeGreeting.modal.notesFailed": "Die Notizen konnten nicht gelesen werden",
+  "extAcmeGreeting.modal.needsGrant": "Ihre Rolle hat ext_acme_greeting_note nicht. Ein Admin vergibt es unter Einstellungen, Rollen: die Rolle öffnen und Lesen und Anlegen für ext_acme_greeting_note einschalten."
 }
