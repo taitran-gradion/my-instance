@@ -4,5 +4,20 @@
   "extAcmeGreeting.local.body": "Ihr Code liegt im Repository dieser Instanz unter addons/greeting und wird nie veröffentlicht.",
   "extAcmeGreeting.route.title": "Was ihre Route sagt",
   "extAcmeGreeting.route.asking": "Frage…",
-  "extAcmeGreeting.route.failed": "Keine Antwort"
+  "extAcmeGreeting.route.failed": "Keine Antwort",
+  "extAcmeGreeting.dealBadge": "Acme-Konto",
+  "extAcmeGreeting.modal.title": "Acme-Konto",
+  "extAcmeGreeting.modal.how.title": "Von dieser Installation ergänzt",
+  "extAcmeGreeting.modal.how.body": "Das Addon acme-greeting ersetzt die Kopfzeilen-Datei des Deals und umhüllt das Original; im Kern ist weder dieses Abzeichen noch dieser Dialog definiert.",
+  "extAcmeGreeting.modal.company": "Firma",
+  "extAcmeGreeting.modal.answer": "Acme sagt",
+  "extAcmeGreeting.modal.note": "Notiz für das Acme-Team",
+  "extAcmeGreeting.modal.ask": "Acme fragen",
+  "extAcmeGreeting.modal.close": "Schließen",
+  "extAcmeGreeting.desk.how.title": "Eine Seite, die der Kern nicht hat",
+  "extAcmeGreeting.desk.how.body": "Das Addon acme-greeting legt diese Datei im Ordner für eigene Seiten des Kerns ab, daher erscheint sie in der Seitenleiste unter Datensätze.",
+  "extAcmeGreeting.desk.deals": "Deals",
+  "extAcmeGreeting.desk.empty": "Noch keine Deals",
+  "extAcmeGreeting.desk.col.name": "Deal",
+  "extAcmeGreeting.desk.col.company": "Firma"
 }

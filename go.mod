@@ -22,8 +22,8 @@ replace github.com/margince/margince/composition => ./.margince/core/build/compo
 // Core from the fork that carries the extensions.mod POC. The Makefile reads
 // the backend version here to fetch the matching core for composing.
 replace (
-	github.com/margince/margince/backend => github.com/taitran-gradion/margince/backend v0.0.7-poc.2
-	github.com/margince/margince/extensions/de => github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.2
-	github.com/margince/margince/extensions/openchannel => github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.2
-	github.com/margince/margince/extensions/vn => github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.2
+	github.com/margince/margince/backend => github.com/taitran-gradion/margince/backend v0.0.7-poc.3
+	github.com/margince/margince/extensions/de => github.com/taitran-gradion/margince/extensions/de v0.0.7-poc.3
+	github.com/margince/margince/extensions/openchannel => github.com/taitran-gradion/margince/extensions/openchannel v0.0.7-poc.3
+	github.com/margince/margince/extensions/vn => github.com/taitran-gradion/margince/extensions/vn v0.0.7-poc.3
 )

@@ -1,0 +1,3 @@
+# The core file each override was written against. A core change to it stops
+# the build until the override is re-read and this hash is updated.
+src/screens/deal360/dealheaderfacts.tsx sha256:91fbcd0e5346bf6e9ac92dfe828ca2db4097a781de1a476d196a5e076f28786a

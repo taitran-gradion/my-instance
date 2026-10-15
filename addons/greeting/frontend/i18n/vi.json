@@ -4,5 +4,20 @@
   "extAcmeGreeting.local.body": "Mã của nó nằm trong repository của instance này, tại addons/greeting, và không bao giờ được publish.",
   "extAcmeGreeting.route.title": "Route của nó trả lời",
   "extAcmeGreeting.route.asking": "Đang hỏi…",
-  "extAcmeGreeting.route.failed": "Không phản hồi"
+  "extAcmeGreeting.route.failed": "Không phản hồi",
+  "extAcmeGreeting.dealBadge": "Tài khoản Acme",
+  "extAcmeGreeting.modal.title": "Tài khoản Acme",
+  "extAcmeGreeting.modal.how.title": "Do bản cài đặt này thêm vào",
+  "extAcmeGreeting.modal.how.body": "Addon acme-greeting thay tệp tiêu đề deal của core và bọc bản gốc; core không định nghĩa huy hiệu hay hộp thoại này.",
+  "extAcmeGreeting.modal.company": "Công ty",
+  "extAcmeGreeting.modal.answer": "Acme trả lời",
+  "extAcmeGreeting.modal.note": "Ghi chú cho nhóm Acme",
+  "extAcmeGreeting.modal.ask": "Hỏi Acme",
+  "extAcmeGreeting.modal.close": "Đóng",
+  "extAcmeGreeting.desk.how.title": "Một màn hình core không có",
+  "extAcmeGreeting.desk.how.body": "Addon acme-greeting thêm tệp này vào thư mục màn hình tùy chỉnh của core, nên nó xuất hiện ở thanh bên dưới mục Bản ghi.",
+  "extAcmeGreeting.desk.deals": "Deals",
+  "extAcmeGreeting.desk.empty": "Chưa có deal nào",
+  "extAcmeGreeting.desk.col.name": "Deal",
+  "extAcmeGreeting.desk.col.company": "Công ty"
 }

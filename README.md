@@ -39,3 +39,17 @@ is composed where it sits, so an edit under `addons/greeting/frontend/` reloads 
 a Go change needs `make up` again. No folder name is fixed: the `replace` says where the code is,
 and the extension's name comes from its module path (`acme-greeting`), not from its folder.
 `go.mod` carries the same `require` and `replace`, because Go builds the binaries from it.
+
+## Changing core screens without a slot
+
+`acme-greeting` also changes two things core never declared a slot for, through its
+`frontend/overrides/` tree, which mirrors core's `frontend/`:
+
+| File | What it does |
+|---|---|
+| `overrides/src/screens/deal360/dealheaderfacts.tsx` | Replaces core's file of that path. It wraps core's `DealSubtitle`, reached as `@core-original/…`, with an "Acme account" badge that opens a modal |
+| `overrides/src/screens/custom/acme-greeting/screen.tsx` | Adds a screen core does not have. Its `nav.group: "records"` puts "Acme desk" in the sidebar after Deals |
+| `overrides.lock` | The hash of each core file it replaces. When core changes that file, `make compose` stops and prints the new line |
+
+After moving `go.mod` to a newer core, a failed lock means: read core's new file, update the
+override, then paste the printed line into `overrides.lock`.
